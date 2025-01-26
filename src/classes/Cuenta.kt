@@ -5,7 +5,7 @@ package classes
  * @property numeroCuenta El número de cuenta.
  * @property saldo El saldo disponible en la cuenta.
  */
-class Cuenta(val numeroCuenta: Int, var saldo: Double) {
+class Cuenta(val numeroCuenta: String, var saldo: Double) {
     /**
      *
      */
@@ -30,12 +30,13 @@ class Cuenta(val numeroCuenta: Int, var saldo: Double) {
     /**
      *
      */
-    fun realizarPago(dinero: Double): Boolean {
-        // Condicional para validar que el saldo no es negativo después de realizar un pago.
-        if (saldo - dinero < 0 || dinero < 0) {
+    fun realizarPago(dinero: Double, cuenta: Cuenta): Boolean {
+        // Condicional para validar que los saldos no son negativos después de realizarse un pago.
+        if (saldo - dinero < 0 || dinero < 0 && cuenta.saldo - dinero >= 0) {
             println("ERROR FATAL")
             return false
         } else {
+            cuenta.saldo += dinero
             saldo -= dinero
             return true
         }
