@@ -30,13 +30,11 @@ class Cuenta(val numeroCuenta: String, var saldo: Double) {
     /**
      *
      */
-    fun realizarPago(dinero: Double, cuenta: Cuenta): Boolean {
-        // Condicional para validar que los saldos no son negativos después de realizarse un pago.
-        if (saldo - dinero < 0 || dinero < 0 && cuenta.saldo - dinero >= 0) {
+    fun realizarPago(dinero: Double): Boolean {
+        if (dinero < 0) {
             println("ERROR FATAL")
             return false
         } else {
-            cuenta.saldo += dinero
             saldo -= dinero
             return true
         }
